@@ -3,14 +3,22 @@ import { useDispatch } from "react-redux";
 import { registration } from "../../redux/actions/userAction";
 
 const Registration = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const handleReg = () => {
-    dispatch(registration(email, password));
+    dispatch(registration(name, email, password));
   };
   return (
     <div>
+      <input
+        onChange={(e) => setName(e.target.value)}
+        type="name"
+        name="name"
+        id=""
+      />
+      <br />
       <input
         onChange={(e) => setEmail(e.target.value)}
         type="email"

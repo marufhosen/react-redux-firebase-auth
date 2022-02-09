@@ -1,4 +1,3 @@
-import { auth } from "../../utils/auth-service";
 import * as types from "../types";
 
 const initialState = {
@@ -9,12 +8,21 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.LOG_IN_SUCCESS:
+    case types.REGISTER_SUCCESS:
       return {
         ...state,
         loginUser: action.payload,
         isAuthenticated: true,
       };
+
+    case types.LOG_IN_SUCCESS:
+      return {
+        ...state,
+        loginUser: action.payload,
+        isAuthenticated: true,
+        success: true,
+      };
+
     case types.LOGOUT:
       sessionStorage.removeItem("token");
       return {
@@ -22,12 +30,7 @@ const userReducer = (state = initialState, action) => {
         loginUser: {},
         isAuthenticated: false,
       };
-    case types.REGISTER_SUCCESS:
-      return {
-        ...state,
-        loginUser: action.payload,
-        isAuthenticated: true,
-      };
+      
     case types.ADD_USER:
       return {
         ...state,
